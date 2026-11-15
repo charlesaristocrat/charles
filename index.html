@@ -44,6 +44,10 @@
   .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--red);background:var(--lime);color:var(--ink);border-color:var(--lime)}
   .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--red)}
 
+  .motto{max-width:30ch;padding-left:16px;border-left:4px solid var(--red);font-family:var(--disp);font-weight:700;font-size:clamp(1.05rem,2.6vw,1.35rem);line-height:1.35;letter-spacing:-.01em;
+    background:linear-gradient(90deg,#26251f 0%,#ffffff 50%,#26251f 100%);background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:wave 3.2s linear infinite}
+  @keyframes wave{to{background-position:-200% 0}}
   .photo{position:relative;justify-self:center;width:min(300px,70vw);aspect-ratio:1}
   .photo .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(1) contrast(1.08);
     border:3px solid var(--text);background:var(--lime);box-shadow:8px 8px 0 var(--red);
@@ -95,6 +99,7 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
     h1 .ch,.rv{opacity:1;transform:none}
+    .motto{-webkit-text-fill-color:#fff;color:#fff;background:none}
   }
 </style>
 </head>
@@ -111,7 +116,7 @@
       <span class="tag">Услуги OSINT по выгодной цене</span>
       <h1 id="title" aria-label="Charles Aristocrat">Charles Aristocrat</h1>
       <p class="lead">Прайс-лист моих услуг. Перед обращением ознакомьтесь с условиями внизу страницы.</p>
-      <a class="btn" href="#terms">Ознакомиться ↓</a>
+      <p class="motto">Мы не доксеры мы умнее мы ищем сами а не зависимы от других</p>
     </div>
     <div class="photo" id="photo">
       <img class="pic" src="photo.jpg" alt="Charles Aristocrat">
