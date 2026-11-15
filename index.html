@@ -51,9 +51,9 @@
   .photo .mono{display:none;position:absolute;inset:0;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;font-size:6rem;background:var(--lime);color:var(--ink);border:3px solid var(--text);box-shadow:8px 8px 0 var(--red);border-radius:42% 58% 55% 45%/50% 42% 58% 50%;animation:morph 9s ease-in-out infinite}
   .photo.noimg .pic{display:none}.photo.noimg .mono{display:flex}
   @keyframes morph{0%,100%{border-radius:42% 58% 55% 45%/50% 42% 58% 50%}50%{border-radius:58% 42% 45% 55%/42% 58% 42% 58%}}
-  .snake{position:absolute;right:-48px;bottom:-44px;width:170px;height:auto;aspect-ratio:610/576;pointer-events:none;
-    filter:invert(1) drop-shadow(0 0 10px rgba(255,77,46,.55));mix-blend-mode:screen}
-  @media (max-width:760px){.snake{right:-12px;bottom:-30px;width:140px}}
+  .snake{position:absolute;right:-70px;bottom:-62px;width:230px;height:auto;aspect-ratio:610/576;pointer-events:none;
+    filter:invert(1);mix-blend-mode:screen}
+  @media (max-width:760px){.snake{right:-18px;bottom:-40px;width:180px}}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* бегущая строка */
