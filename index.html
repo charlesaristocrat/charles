@@ -51,10 +51,9 @@
   .photo .mono{display:none;position:absolute;inset:0;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;font-size:6rem;background:var(--lime);color:var(--ink);border:3px solid var(--text);box-shadow:8px 8px 0 var(--red);border-radius:42% 58% 55% 45%/50% 42% 58% 50%;animation:morph 9s ease-in-out infinite}
   .photo.noimg .pic{display:none}.photo.noimg .mono{display:flex}
   @keyframes morph{0%,100%{border-radius:42% 58% 55% 45%/50% 42% 58% 50%}50%{border-radius:58% 42% 45% 55%/42% 58% 42% 58%}}
-  .badge{position:absolute;right:-26px;bottom:-22px;width:108px;height:108px;border-radius:50%;background:var(--red);color:var(--ink);border:3px solid var(--bg);display:grid;place-items:center}
-  .badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 14s linear infinite}
-  .badge text{font-family:var(--disp);font-weight:700;font-size:10.5px;fill:var(--ink)}
-  .badge b{font-family:var(--disp);font-size:1.5rem}
+  .snake{position:absolute;right:-48px;bottom:-44px;width:170px;height:auto;aspect-ratio:610/576;pointer-events:none;
+    filter:invert(1) drop-shadow(0 0 10px rgba(255,77,46,.55));mix-blend-mode:screen}
+  @media (max-width:760px){.snake{right:-12px;bottom:-30px;width:140px}}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* бегущая строка */
@@ -117,11 +116,7 @@
     <div class="photo" id="photo">
       <img class="pic" src="photo.jpg" alt="Charles Aristocrat">
       <div class="mono">CA</div>
-      <div class="badge" aria-hidden="true">
-        <svg viewBox="0 0 108 108"><defs><path id="ring" d="M54,54 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
-          <text><textPath href="#ring" textLength="248" lengthAdjust="spacing">OSINT • OSINT • OSINT • OSINT • </textPath></text></svg>
-        <b>✦</b>
-      </div>
+      <video class="snake" src="snake.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
     </div>
   </section>
 
