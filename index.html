@@ -51,8 +51,8 @@
   .photo .mono{display:none;position:absolute;inset:0;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;font-size:6rem;background:var(--lime);color:var(--ink);border:3px solid var(--text);box-shadow:8px 8px 0 var(--red);border-radius:42% 58% 55% 45%/50% 42% 58% 50%;animation:morph 9s ease-in-out infinite}
   .photo.noimg .pic{display:none}.photo.noimg .mono{display:flex}
   @keyframes morph{0%,100%{border-radius:42% 58% 55% 45%/50% 42% 58% 50%}50%{border-radius:58% 42% 45% 55%/42% 58% 42% 58%}}
-  .snake{position:absolute;right:-70px;bottom:-62px;width:230px;height:auto;aspect-ratio:610/576;pointer-events:none;
-    filter:invert(1);mix-blend-mode:screen}
+  .snake{position:absolute;right:-70px;bottom:-62px;width:230px;height:auto;aspect-ratio:610/576;pointer-events:none}
+  .sv{position:absolute;width:2px;height:2px;opacity:.01;pointer-events:none}
   @media (max-width:760px){.snake{right:-18px;bottom:-40px;width:180px}}
   @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -116,7 +116,8 @@
     <div class="photo" id="photo">
       <img class="pic" src="photo.jpg" alt="Charles Aristocrat">
       <div class="mono">CA</div>
-      <video class="snake" src="snake.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <video class="sv" id="sv" src="snake.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <canvas class="snake" id="sc" width="400" height="378" aria-hidden="true"></canvas>
     </div>
   </section>
 
@@ -205,6 +206,30 @@
   },{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%2)*0.1+'s';io.observe(el)});
 })();
+
+  /* змея: белый фон видео делаем прозрачным */
+  (function(){
+    var v=document.getElementById('sv'),c=document.getElementById('sc');
+    if(!v||!c)return;
+    var x=c.getContext('2d',{willReadFrequently:true}),W=c.width,H=c.height;
+    function draw(){
+      if(v.readyState>=2){
+        try{
+          x.drawImage(v,0,0,W,H);
+          var d=x.getImageData(0,0,W,H),a=d.data;
+          for(var i=0;i<a.length;i+=4){
+            var al=255-(a[i]+a[i+1]+a[i+2])/3;
+            al=al<45?0:Math.min(255,(al-45)*1.5);
+            a[i]=241;a[i+1]=239;a[i+2]=231;a[i+3]=al;
+          }
+          x.putImageData(d,0,0);
+        }catch(e){}
+      }
+      if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(draw);else requestAnimationFrame(draw);
+    }
+    var p=v.play();if(p&&p.catch)p.catch(function(){});
+    draw();
+  })();
 </script>
 </body>
 </html>
